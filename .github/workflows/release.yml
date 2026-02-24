@@ -35,7 +35,7 @@ jobs:
       - name: Create release zip
         run: |
           $outDir = ".\SamplePlugin\bin\x64\Release\SamplePlugin"
-          Compress-Archive -Path "$outDir\*" -DestinationPath "latest.zip"
+          Compress-Archive -Path "$outDir\*" -DestinationPath "latest.zip" -Force
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
