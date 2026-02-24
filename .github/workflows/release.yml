@@ -32,13 +32,8 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Create release zip
-        run: |
-          $outDir = ".\SamplePlugin\bin\x64\Release\SamplePlugin"
-          Compress-Archive -Path "$outDir\*" -DestinationPath "latest.zip" -Force
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: latest.zip
+          files: .\SamplePlugin\bin\x64\Release\SamplePlugin\latest.zip
           generate_release_notes: true
