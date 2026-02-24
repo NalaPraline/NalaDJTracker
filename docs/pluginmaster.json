@@ -15,6 +15,7 @@
       "notifications",
       "tracker"
     ],
+    "IconUrl": "https://raw.githubusercontent.com/NalaPraline/NalaDJTracker/main/Data/surprised_Lay.png",
     "RepoUrl": "https://github.com/NalaPraline/NalaDJTracker",
     "DownloadLinkInstall": "https://github.com/NalaPraline/NalaDJTracker/releases/latest/download/latest.zip",
     "DownloadLinkTesting": "https://github.com/NalaPraline/NalaDJTracker/releases/latest/download/latest.zip",
