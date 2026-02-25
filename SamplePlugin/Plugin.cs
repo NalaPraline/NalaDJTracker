@@ -25,14 +25,13 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IChatGui ChatGui { get; private set; } = null!;
     [PluginService] internal static INotificationManager NotificationManager { get; private set; } = null!;
 
-    private const string CommandName = "/nala";
-    private const string CommandNameAlt = "/dj";
-    private const string ConfigCommandName = "/nalaconfig";
-    private const string ScheduleCommandName = "/nalaschedule";
+    private const string CommandName = "/dj";
+    private const string ConfigCommandName = "/djconfig";
+    private const string ScheduleCommandName = "/djschedule";
 
     public Configuration Configuration { get; init; }
 
-    public readonly WindowSystem WindowSystem = new("Nala");
+    public readonly WindowSystem WindowSystem = new("DJTracker");
     private ConfigWindow ConfigWindow { get; init; }
     private MainWindow MainWindow { get; init; }
     private SchedulingWindow SchedulingWindow { get; init; }
@@ -68,22 +67,17 @@ public sealed class Plugin : IDalamudPlugin
 
         CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
         {
-            HelpMessage = "Open the Nala DJ Tracker window"
-        });
-
-        CommandManager.AddHandler(CommandNameAlt, new CommandInfo(OnCommand)
-        {
-            HelpMessage = "Open the Nala DJ Tracker window (alias)"
+            HelpMessage = "Open the DJ Tracker window"
         });
 
         CommandManager.AddHandler(ConfigCommandName, new CommandInfo(OnConfigCommand)
         {
-            HelpMessage = "Open the Nala configuration window"
+            HelpMessage = "Open the DJ Tracker configuration window"
         });
 
         CommandManager.AddHandler(ScheduleCommandName, new CommandInfo(OnScheduleCommand)
         {
-            HelpMessage = "Open the Nala shout scheduler window"
+            HelpMessage = "Open the DJ Tracker scheduler window"
         });
 
         PluginInterface.UiBuilder.Draw += WindowSystem.Draw;
@@ -93,7 +87,7 @@ public sealed class Plugin : IDalamudPlugin
         // Subscribe to framework update for periodic refresh
         Framework.Update += OnFrameworkUpdate;
 
-        Log.Information("Nala DJ Tracker loaded!");
+        Log.Information("DJ Tracker loaded!");
 
         // Trigger initial refresh
         _ = RefreshStreamsAsync();
@@ -116,7 +110,6 @@ public sealed class Plugin : IDalamudPlugin
         TwitchService.Dispose();
 
         CommandManager.RemoveHandler(CommandName);
-        CommandManager.RemoveHandler(CommandNameAlt);
         CommandManager.RemoveHandler(ConfigCommandName);
         CommandManager.RemoveHandler(ScheduleCommandName);
 
@@ -216,20 +209,20 @@ public sealed class Plugin : IDalamudPlugin
         Configuration.ShoutSchedule.RemoveAt(0);
 
         Log.Information($"Finished promoting {finished.DisplayName}");
-        ChatGui.Print($"[Nala] Finished promoting {finished.DisplayName}");
+        ChatGui.Print($"[DJ Tracker] Finished promoting {finished.DisplayName}");
 
         if (Configuration.ShoutSchedule.Count > 0)
         {
             // Start transition period
             Configuration.TransitionStartTime = DateTime.UtcNow;
             var next = Configuration.ShoutSchedule[0];
-            ChatGui.Print($"[Nala] Next up: {next.DisplayName} (starting in {Configuration.TransitionDelaySeconds}s)");
+            ChatGui.Print($"[DJ Tracker] Next up: {next.DisplayName} (starting in {Configuration.TransitionDelaySeconds}s)");
         }
         else
         {
             Configuration.SchedulerEnabled = false;
             Configuration.TransitionStartTime = null;
-            ChatGui.Print("[Nala] Schedule complete! All DJs have been promoted.");
+            ChatGui.Print("[DJ Tracker] Schedule complete! All DJs have been promoted.");
         }
 
         Configuration.Save();
@@ -244,13 +237,13 @@ public sealed class Plugin : IDalamudPlugin
             var next = Configuration.ShoutSchedule[0];
             next.SlotStartTime = DateTime.UtcNow;
             next.LastYellTime = null;
-            ChatGui.Print($"[Nala] Now promoting: {next.DisplayName}");
+            ChatGui.Print($"[DJ Tracker] Now promoting: {next.DisplayName}");
             Log.Information($"Started promoting {next.DisplayName}");
         }
         else
         {
             Configuration.SchedulerEnabled = false;
-            ChatGui.Print("[Nala] Schedule complete! All DJs have been promoted.");
+            ChatGui.Print("[DJ Tracker] Schedule complete! All DJs have been promoted.");
         }
     }
 
@@ -348,7 +341,7 @@ public sealed class Plugin : IDalamudPlugin
         });
 
         // Also send to chat
-        ChatGui.Print($"[Nala] {streamer.DisplayName} is now LIVE! - {streamer.StreamTitle}");
+        ChatGui.Print($"[DJ Tracker] {streamer.DisplayName} is now LIVE! - {streamer.StreamTitle}");
 
         Log.Information($"Notification sent: {streamer.DisplayName} is live");
     }

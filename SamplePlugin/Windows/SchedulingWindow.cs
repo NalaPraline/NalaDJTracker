@@ -17,7 +17,7 @@ public class SchedulingWindow : Window, IDisposable
     private int? itemToMoveUp;
     private int? itemToMoveDown;
 
-    public SchedulingWindow(Plugin plugin) : base("Nala - Shout Scheduler###NalaScheduler")
+    public SchedulingWindow(Plugin plugin) : base("DJ Tracker - Scheduler###DJTrackerScheduler")
     {
         Flags = ImGuiWindowFlags.None;
 

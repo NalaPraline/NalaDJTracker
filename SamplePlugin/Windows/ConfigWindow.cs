@@ -16,7 +16,7 @@ public class ConfigWindow : Window, IDisposable
     private string clientSecretInput = string.Empty;
     private int? djToRemove;
 
-    public ConfigWindow(Plugin plugin) : base("Nala Configuration###NalaConfig")
+    public ConfigWindow(Plugin plugin) : base("DJ Tracker Configuration###DJTrackerConfig")
     {
         Flags = ImGuiWindowFlags.NoCollapse;
 
@@ -301,9 +301,9 @@ public class ConfigWindow : Window, IDisposable
         ImGui.Text("Commands:");
         using (ImRaii.PushIndent(20f))
         {
-            ImGui.BulletText("/nala or /dj - Open DJ Tracker window");
-            ImGui.BulletText("/nalaschedule - Open the Shout Scheduler");
-            ImGui.BulletText("/nalaconfig - Open this configuration window");
+            ImGui.BulletText("/dj - Open DJ Tracker window");
+            ImGui.BulletText("/djschedule - Open the Scheduler");
+            ImGui.BulletText("/djconfig - Open this configuration window");
         }
     }
 }

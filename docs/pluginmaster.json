@@ -1,11 +1,11 @@
 [
   {
-    "Author": "Nala",
-    "Name": "Nala DJ Tracker",
+    "Author": "Nala Praline",
+    "Name": "DJ Tracker",
     "InternalName": "SamplePlugin",
-    "AssemblyVersion": "0.0.0.1",
-    "Punchline": "Track your favorite Twitch DJs and streamers!",
-    "Description": "A Dalamud plugin that tracks Twitch streamers and DJs. Get notifications when they go live, see their stream info, schedule automatic shouts, and open streams directly from FFXIV.\n\nCommands:\n/nala or /dj - Open the DJ Tracker window\n/nalaschedule - Open the Shout Scheduler\n/nalaconfig - Open configuration",
+    "AssemblyVersion": "0.0.0.2",
+    "Punchline": "Track your favorite DJs and set up a performance schedule!",
+    "Description": "A Dalamud plugin to track your favorite Twitch DJs and set up an automated shout schedule directly from FFXIV.\n\nCommands:\n/dj - Open the DJ Tracker window\n/djschedule - Open the Scheduler\n/djconfig - Open configuration",
     "ApplicableVersion": "any",
     "DalamudApiLevel": 14,
     "Tags": [
@@ -13,7 +13,8 @@
       "dj",
       "streamer",
       "notifications",
-      "tracker"
+      "tracker",
+      "schedule"
     ],
     "IconUrl": "https://raw.githubusercontent.com/NalaPraline/NalaDJTracker/main/Data/surprised_Lay.png",
     "RepoUrl": "https://github.com/NalaPraline/NalaDJTracker",

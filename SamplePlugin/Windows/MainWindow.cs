@@ -13,7 +13,7 @@ public class MainWindow : Window, IDisposable
     private readonly Plugin plugin;
 
     public MainWindow(Plugin plugin)
-        : base("Nala - DJ Tracker##NalaMain", ImGuiWindowFlags.None)
+        : base("DJ Tracker##DJTrackerMain", ImGuiWindowFlags.None)
     {
         SizeConstraints = new WindowSizeConstraints
         {

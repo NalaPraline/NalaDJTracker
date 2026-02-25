@@ -1,21 +1,21 @@
-# Nala DJ Tracker
+# DJ Tracker
 
-A Dalamud plugin for FFXIV that lets you track your favorite Twitch DJs and streamers directly from the game.
+A Dalamud plugin to track your favorite Twitch DJs and set up an automated shout schedule directly from FFXIV.
 
 ## Features
 
-- Get notified when your followed streamers go live
+- Track your favorite Twitch DJs and get notified when they go live
 - View stream info (title, game, viewer count) without leaving FFXIV
-- Schedule automatic shoutouts in chat
+- Set up an automated shout schedule to promote DJs in order
 - Open streams directly from the plugin window
 
 ## Commands
 
 | Command | Description |
 |---|---|
-| `/nala` or `/dj` | Open the DJ Tracker window |
-| `/nalaschedule` | Open the Shout Scheduler |
-| `/nalaconfig` | Open configuration |
+| `/dj` | Open the DJ Tracker window |
+| `/djschedule` | Open the Scheduler |
+| `/djconfig` | Open configuration |
 
 ## Installation
 
@@ -27,4 +27,4 @@ A Dalamud plugin for FFXIV that lets you track your favorite Twitch DJs and stre
    ```
 4. Click **Save and Close**
 5. Open the plugin installer: `/xlplugins`
-6. Search for **Nala DJ Tracker** and click **Install**
+6. Search for **DJ Tracker** and click **Install**
