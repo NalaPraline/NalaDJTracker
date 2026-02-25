@@ -32,6 +32,9 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
+      - name: List build output
+        run: Get-ChildItem -Recurse .\SamplePlugin\bin\x64\Release\ | Select-Object FullName, Length
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
