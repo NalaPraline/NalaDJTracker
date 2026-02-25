@@ -26,17 +26,25 @@ jobs:
 
       - name: Download Dalamud
         run: |
-          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
-          Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile dalamud.zip
+          Expand-Archive -Force dalamud.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: List build output
-        run: Get-ChildItem -Recurse .\SamplePlugin\bin\x64\Release\ | Select-Object FullName, Length
+      - name: Package plugin
+        run: |
+          $dll = Get-ChildItem -Recurse -Filter "SamplePlugin.dll" | Where-Object { $_.FullName -like "*Release*" } | Select-Object -First 1
+          if (-not $dll) { Write-Error "SamplePlugin.dll not found!"; exit 1 }
+          Write-Host "Found DLL at: $($dll.FullName)"
+          $dir = $dll.DirectoryName
+          Write-Host "Packaging files from: $dir"
+          Get-ChildItem $dir | Select-Object Name, Length
+          $files = Get-ChildItem $dir | Where-Object { $_.Extension -ne ".zip" }
+          Compress-Archive -Path ($files.FullName) -DestinationPath "latest.zip" -Force
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: .\SamplePlugin\bin\x64\Release\SamplePlugin\latest.zip
+          files: latest.zip
           generate_release_notes: true
