@@ -3,7 +3,7 @@
     "Author": "Nala Praline",
     "Name": "DJ Tracker",
     "InternalName": "SamplePlugin",
-    "AssemblyVersion": "0.0.0.2",
+    "AssemblyVersion": "0.0.0.3",
     "Punchline": "Track your favorite DJs and set up a performance schedule!",
     "Description": "A Dalamud plugin to track your favorite Twitch DJs and set up an automated shout schedule directly from FFXIV.\n\nCommands:\n/dj - Open the DJ Tracker window\n/djschedule - Open the Scheduler\n/djconfig - Open configuration",
     "ApplicableVersion": "any",
