@@ -146,7 +146,21 @@ public class MainWindow : Window, IDisposable
             ImGui.TextColored(new Vector4(0.6f, 0.6f, 0.6f, 1.0f), dj.DisplayName);
         }
 
-        ImGui.SameLine(ImGui.GetWindowWidth() - 160);
+        if (dj.IsLive)
+        {
+            ImGui.SameLine(ImGui.GetWindowWidth() - 240);
+
+            if (ImGui.Button("Stream"))
+            {
+                plugin.OpenTwitchPlayer(dj.TwitchUsername);
+            }
+
+            ImGui.SameLine();
+        }
+        else
+        {
+            ImGui.SameLine(ImGui.GetWindowWidth() - 160);
+        }
 
         if (ImGui.Button("Watch"))
         {

@@ -38,6 +38,8 @@ public sealed class Plugin : IDalamudPlugin
 
     public TwitchService TwitchService { get; init; }
 
+    private TwitchPlayerWindow twitchPlayer;
+
     // Current state of DJ streams
     public List<DjStreamer> DjStreamers { get; private set; } = new();
 
@@ -56,6 +58,7 @@ public sealed class Plugin : IDalamudPlugin
         Configuration.NotifiedStreamers ??= new HashSet<string>();
 
         TwitchService = new TwitchService(Log);
+        twitchPlayer = new TwitchPlayerWindow();
 
         ConfigWindow = new ConfigWindow(this);
         MainWindow = new MainWindow(this);
@@ -108,6 +111,7 @@ public sealed class Plugin : IDalamudPlugin
         SchedulingWindow.Dispose();
 
         TwitchService.Dispose();
+        twitchPlayer.Dispose();
 
         CommandManager.RemoveHandler(CommandName);
         CommandManager.RemoveHandler(ConfigCommandName);
@@ -393,4 +397,6 @@ public sealed class Plugin : IDalamudPlugin
     public void ToggleConfigUi() => ConfigWindow.Toggle();
     public void ToggleMainUi() => MainWindow.Toggle();
     public void ToggleSchedulingUi() => SchedulingWindow.Toggle();
+
+    public void OpenTwitchPlayer(string username) => twitchPlayer.OpenStream(username);
 }
